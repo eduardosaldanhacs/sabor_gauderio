@@ -1,3 +1,4 @@
+@props(['pizzas'])
 <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
     <div class="container-fluid">
         <div class="col-3"><a class="navbar-brand" href="{{ route('index') }}"><img class="img-fluid"
@@ -8,10 +9,25 @@
         </button>
         <div class="col-9 collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ route('cardapio') }}"><i
-                            class="fas fa-pizza-slice me-1"></i>Cardápio</a>
-                </li>
+                <div class="dropdown">
+                    <li class="nav-item" id="cardapio-dropdown">
+                        <a class="text-white nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-pizza-slice me-1"></i>
+                            <span onclick="window.location.href='{{ route('cardapio') }}'" id="cardapio-menu">Cardápio</span>
+                        </a>
+                        <ul class="dropdown-menu" id="menu-cardapio">
+                            @foreach ($pizzas as $pizza)
+                                <li>
+                                    <a class="dropdown-item text-white" type="button" href="{{ route('detalhe', ['id' => $pizza->id]) }}">
+                                        {{ $pizza->name }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                        {{-- <a class="nav-link text-white" href="{{ route('cardapio') }}"><i
+                                class="fas fa-pizza-slice me-1"></i>Cardápio</a> --}}
+                    </li>
+                </div>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{ route('sobre-nos') }}"><i
                             class="fas fa-info-circle me-1"></i>Sobre

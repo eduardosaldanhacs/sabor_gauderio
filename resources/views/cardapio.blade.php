@@ -10,12 +10,12 @@
                             <h5 class="card-title">{{ $pizza->name }}</h5>
                             <p class="card-text" style="height: 80px">{{ Str::limit($pizza->flavor, 120) }}</p>
                             <p class="card-text">Preço: R$ {{ number_format($pizza->small_price, 2, ',', '.') }}</p>
+                            <!-- Botão para adicionar pizza ao carrinho -->
                             @livewire('add-pizza', ['pizza' => $pizza], key($pizza->id))
                         </div>
                     </div>
                 </div>
             @endforeach
-        </div>
-            
+        </div>         
     </div>  
 </x-layouts.site-layout>

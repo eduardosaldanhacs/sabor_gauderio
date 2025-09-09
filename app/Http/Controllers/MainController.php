@@ -23,7 +23,7 @@ class MainController extends Controller
     public function detalhe($id): View
     {
         $pizza = Pizza::findOrFail($id);
-        return view('sabores.detalhe', ['pizza' => $pizza]);
+        return view('cardapio-detalhe', ['pizza' => $pizza]);
     }
 
     public function cardapio(): View
@@ -35,5 +35,10 @@ class MainController extends Controller
     public function sobre_nos(): View
     {
         return view('sobre-nos');
+    }
+
+    public function checkout(): View
+    {
+        return view('checkout');
     }
 }

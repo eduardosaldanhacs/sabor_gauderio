@@ -6,16 +6,14 @@ use Illuminate\Support\Facades\Route;
 
 // pizza routes
 Route::get('/cardapio', [MainController::class, 'cardapio'])->name('cardapio');
+
+Route::get('/cardapio/{id}', [MainController::class, 'detalhe'])->name('detalhe');
+
 Route::get('/sobre-nos', [MainController::class, 'sobre_nos'])->name('sobre-nos');
 Route::get('/', [MainController::class, 'index'])->name('index');
-
+Route::get('/checkout', [MainController::class, 'checkout'])->name('checkout');
 // usuários não autenticados
 Route::middleware('guest')->group(function () {
-
-    Route::get('/sabores/{id}', [MainController::class, 'detalhe'])->name('sabores.detalhe');
-
-
-
     // login routes
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/login', [AuthController::class, 'authenticate'])->name('authenticate');

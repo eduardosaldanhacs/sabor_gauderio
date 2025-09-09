@@ -12,11 +12,11 @@ class Carrinho extends Component
     public array $carrinho = [];
 
     #[On('pizzaAdded')]
-    public function atualizarCarrinho()
+    public function atualizarCarrinho(array $carrinho)
     {
-        $this->carrinho = session()->get('carrinho', []);
+        // O carrinho já vem como argumento do evento
+        $this->carrinho = $carrinho;
     }
-
 
     public function limparCarrinho()
     {
@@ -25,11 +25,9 @@ class Carrinho extends Component
         $this->dispatch('notification', type: 'success', title: 'Carrinho limpo!');
     }
 
-
     public function toggleCarrinho()
     {
         $this->mostrarCarrinho = !$this->mostrarCarrinho;
-
         if ($this->mostrarCarrinho) {
             $this->carrinho = session()->get('carrinho', []);
         }
@@ -41,9 +39,6 @@ class Carrinho extends Component
             return $carry + ($item['small_price'] * $item['quantidade']);
         }, 0);
     }
-
-
-
 
     public function mount()
     {

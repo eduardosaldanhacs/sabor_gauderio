@@ -3,7 +3,7 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-USE App\Models\Pizza;
+use App\Models\Pizza;
 
 class AddPizza extends Component
 {
@@ -13,13 +13,13 @@ class AddPizza extends Component
     {
         $this->pizza = $pizza;
     }
-    
+
     public function adicionarAoCarrinho()
     {
         $pizza = $this->pizza;
-    
+
         $carrinho = session()->get('carrinho', []);
-    
+
         if (isset($carrinho[$pizza->id])) {
             $carrinho[$pizza->id]['quantidade']++;
         } else {
@@ -29,12 +29,14 @@ class AddPizza extends Component
                 'quantidade' => 1,
             ];
         }
-    
+
         session()->put('carrinho', $carrinho);
+
         $this->dispatch('notification', type: 'success', title: 'Produto adicionado!');
-        $this->dispatch('pizzaAdded');
+        // Despache o evento com os dados atualizados do carrinho
+        $this->dispatch('pizzaAdded', carrinho: $carrinho);
     }
-    
+
 
 
     public function render()

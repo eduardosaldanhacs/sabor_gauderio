@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset('assets/bootstrap/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
+    <script src="{{ asset('assets/js/functions.js') }}"></script>
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" type="image/png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,6 +19,7 @@
 
 <body>
     <x-user-bar />
+    <!-- Vêm da index.blade -->
     {{ $slot }}
     <x-rodape />
     <script src="{{ asset('assets/bootstrap/bootstrap.bundle.min.js') }}"></script>

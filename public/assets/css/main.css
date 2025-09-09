@@ -29,3 +29,8 @@
     height: 600px; 
     box-shadow: 5px 3px 10px #696969;
 }
+
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; /* mantém colado no botão */
+}
