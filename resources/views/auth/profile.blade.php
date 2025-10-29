@@ -1,4 +1,4 @@
-<x-layouts.main-layout pageTitle="Perfil de usuário">
+<x-layouts.site-layout pageTitle="Perfil de usuário">
 
 <div class="container mt-5">
     <div class="row justify-content-center">
@@ -76,4 +76,4 @@
     </div>
 </div>
 
-</x-layouts.main-layout>
+</x-layouts.site-layout>

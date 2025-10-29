@@ -1,4 +1,4 @@
-<x-layouts.main-layout pageTitle="Esqueci a senha">
+<x-layouts.site-layout pageTitle="Esqueci a senha">
 
     <div class="container mt-5">
         <div class="row justify-content-center">
@@ -45,4 +45,4 @@
         </div>
     </div>
 
-</x-layouts.main-layout>
+</x-layouts.site-layout>
