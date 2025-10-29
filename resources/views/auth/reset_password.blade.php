@@ -1,4 +1,4 @@
-<x-layouts.site-layout pageTitle="Redefinir senha">
+<x-layouts.main-layout pageTitle="Redefinir senha">
 
     <div class="container mt-5">
         <div class="row justify-content-center">
@@ -41,4 +41,4 @@
         </div>
     </div>
 
-</x-layouts.site-layout>
+</x-layouts.main-layout>

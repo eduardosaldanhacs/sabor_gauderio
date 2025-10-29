@@ -1,4 +1,4 @@
-<x-layouts.site-layout :pageTitle="'Início - Pizzaria Delícia'">
+<x-layouts.main-layout :pageTitle="'Início - Pizzaria Delícia'">
     <div class="container mt-5">
         <h1 class="text-center mb-4">Cardápio</h1>
         <div class="row py-5">
@@ -17,4 +17,4 @@
             </div>
         </div>
     </div>
-</x-layouts.site-layout>
+</x-layouts.main-layout>

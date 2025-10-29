@@ -1,4 +1,4 @@
-<x-layouts.site-layout pageTitle="Email enviado">
+<x-layouts.main-layout pageTitle="Email enviado">
     <div class="container mt-5">
         <div class="row">
             <div class="col text-center">
@@ -13,4 +13,4 @@
             </div>
         </div>
     </div>
-</x-layouts.site-layout>
+</x-layouts.main-layout>
