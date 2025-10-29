@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
+use Livewire\Livewire;
 
 // pizza routes
 Route::get('/cardapio', [MainController::class, 'cardapio'])->name('cardapio');
@@ -12,6 +13,23 @@ Route::get('/cardapio/{id}', [MainController::class, 'detalhe'])->name('detalhe'
 Route::get('/sobre-nos', [MainController::class, 'sobre_nos'])->name('sobre-nos');
 Route::get('/', [MainController::class, 'index'])->name('index');
 Route::get('/checkout', [MainController::class, 'checkout'])->name('checkout');
+
+Route::middleware(['web'])->group(function () {
+    Livewire::component('carrinho', \App\Livewire\Carrinho::class);
+});
+
+Route::get('/session-test', function () {
+    if (!session()->has('visitas')) {
+        session(['visitas' => 1]);
+    } else {
+        session(['visitas' => session('visitas') + 1]);
+    }
+
+    return session()->all();
+});
+
+
+
 // usuários não autenticados
 Route::middleware('guest')->group(function () {
     // login routes

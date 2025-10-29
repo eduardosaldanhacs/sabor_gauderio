@@ -10,19 +10,31 @@ class Carrinho extends Component
 {
     public bool $mostrarCarrinho = false;
     public array $carrinho = [];
+    public $cep;
 
     #[On('pizzaAdded')]
-    public function atualizarCarrinho(array $carrinho)
+    public function atualizarCarrinho()
     {
-        // O carrinho já vem como argumento do evento
-        $this->carrinho = $carrinho;
+        $this->carrinho = session()->get('carrinho', []);
     }
+
 
     public function limparCarrinho()
     {
         session()->forget('carrinho');
         $this->carrinho = [];
         $this->dispatch('notification', type: 'success', title: 'Carrinho limpo!');
+    }
+
+    public function finalizarCompra()
+    {
+        if (!$this->cep) {
+            $this->dispatch('notification', type: 'error', title: 'Digite o CEP antes de finalizar!');
+            return;
+        }
+
+        // redireciona para a rota checkout com o CEP
+        return redirect()->route('checkout', ['cep' => $this->cep]);
     }
 
     public function toggleCarrinho()
@@ -42,6 +54,7 @@ class Carrinho extends Component
 
     public function mount()
     {
+        //dump(session()->get('carrinho'));
         $this->carrinho = session()->get('carrinho', []);
     }
 

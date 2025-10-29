@@ -6,7 +6,6 @@
                 <p class="text-center display-6">Welcome to the checkout page</p>
                 <p>Pedidos</p>
                 <p>Localização</p>
-                
             </div>
         </div>
     </div>

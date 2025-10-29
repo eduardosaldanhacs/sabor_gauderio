@@ -36,16 +36,6 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="#contato"><i class="fas fa-phone-alt me-1"></i>Contato</a>
                 </li>
-                @auth
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ route('home') }}"><i class="fas fa-receipt me-1"></i>Meus
-                            Pedidos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ route('home') }}"><i
-                                class="fas fa-user-circle me-1"></i>Perfil</a>
-                    </li>
-                @endauth
             </ul>
             <div class="d-flex">
 

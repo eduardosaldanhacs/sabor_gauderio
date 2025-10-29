@@ -37,8 +37,14 @@ class MainController extends Controller
         return view('sobre-nos');
     }
 
-    public function checkout(): View
+    public function checkout(Request $request)
     {
-        return view('checkout');
+
+        $carrinho = session('cart', []);
+        $cep = $request->query('cep'); // se veio pela URL
+        // ou
+        // $cep = $request->cep;
+
+        return view('checkout', compact('cep'));
     }
 }

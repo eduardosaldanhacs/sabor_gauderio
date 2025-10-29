@@ -7,6 +7,7 @@ use Livewire\Livewire;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 use App\Models\Pizza;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
             return Route::post('/sabor_gauderio/livewire/update', $handle);
         });
 
+        Schema::defaultStringLength(191);
 
         View::composer('components.user-bar', function ($view) {
             $view->with('pizzas', Pizza::all());
