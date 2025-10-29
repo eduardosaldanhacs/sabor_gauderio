@@ -26,14 +26,5 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        Livewire::setUpdateRoute(function ($handle) {
-            return Route::post('/sabor_gauderio/livewire/update', $handle);
-        });
-
-        Schema::defaultStringLength(191);
-
-        View::composer('components.user-bar', function ($view) {
-            $view->with('pizzas', Pizza::all());
-        });
     }
 }
