@@ -26,5 +26,9 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        // Compartilha $pizzas com TODAS as views
+        View::composer('*', function ($view) {
+            $view->with('pizzas', Pizza::all());
+        });
     }
 }

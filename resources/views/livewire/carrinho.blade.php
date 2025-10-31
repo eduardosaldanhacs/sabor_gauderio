@@ -4,11 +4,11 @@
     </button>
 
     @if ($mostrarCarrinho)
-        <div class="card mt-3 p-3 position-absolute z-3">
+        <div class="card mt-3 me-3 p-3 position-absolute z-3">
             <h5>Itens no carrinho:</h5>
 
             @forelse ($carrinho as $item)
-                <div class="row">
+                <div class="row mb-2">
                     <div class="col-5">
                         <img src="{{ asset('assets/images/pizzas/' . $item['image']) }}" class="card-img-top"
                             style="height: 80px" alt="{{ $item['name'] }}">
@@ -25,7 +25,7 @@
             @endforelse
 
             @if ($carrinho)
-                <form action="{{ route('checkout') }}" method="GET">
+                <form wire:submit.prevent="finalizarCompra">
                     @csrf
                     <div class="mt-2">
                         <label for="cep" class="form-label">Cep: </label>

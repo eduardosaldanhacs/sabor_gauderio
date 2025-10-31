@@ -19,6 +19,7 @@
 
 <body>
     <x-user-bar :pizzas="$pizzas"/>
+    @livewire('message')
     {{ $slot }}
 
     <script src="{{ asset('assets/bootstrap/bootstrap.bundle.min.js') }}"></script>

@@ -39,12 +39,21 @@ class MainController extends Controller
 
     public function checkout(Request $request)
     {
+        // Recupera o carrinho da sessão (definido pelo Livewire)
+        $carrinho = session()->get('carrinho', []);
 
-        $carrinho = session('cart', []);
-        $cep = $request->query('cep'); // se veio pela URL
-        // ou
-        // $cep = $request->cep;
+        // Pega o CEP (pode vir por GET ou POST)
+        $cep = $request->input('cep') ?? $request->query('cep');
 
-        return view('checkout', compact('cep'));
+        // Calcula o total com base no carrinho
+        $total = collect($carrinho)->sum(function ($item) {
+            return $item['small_price'] * $item['quantidade'];
+        });
+        // Retorna a view 'checkout.blade.php'
+        return view('checkout', [
+            'carrinho' => $carrinho,
+            'cep' => $cep,
+            'total' => $total
+        ]);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Pizza;
 use Livewire\Component;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Emit;
 
 class Carrinho extends Component
 {
@@ -34,7 +35,7 @@ class Carrinho extends Component
         }
 
         // redireciona para a rota checkout com o CEP
-        return redirect()->route('checkout', ['cep' => $this->cep]);
+        return redirect()->route('checkout', ['cep' => $this->cep, 'carrinho' => $this->carrinho]);
     }
 
     public function toggleCarrinho()
@@ -51,6 +52,7 @@ class Carrinho extends Component
             return $carry + ($item['small_price'] * $item['quantidade']);
         }, 0);
     }
+
 
     public function mount()
     {
