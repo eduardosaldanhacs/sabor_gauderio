@@ -32,7 +32,7 @@ class AddPizza extends Component
         }
 
         session()->put('carrinho', $carrinho);
-        $this->dispatch('notification', type: 'success', title: 'Produto adicionado!');
+        $this->dispatch('notification', type: 'success', title: 'Produto adicionado ao carrinho!');
         $this->dispatch('pizzaAdded');
     }
 

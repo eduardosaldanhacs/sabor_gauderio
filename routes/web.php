@@ -62,4 +62,9 @@ Route::middleware('auth')->group(function () {
 
     // logout
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    // finalizar pedido
+    Route::get('/finalizar_pedido', [MainController::class, 'finalizar_pedido'])->name('finalizar_pedido');
+
+    Route::get('/pedidos', [MainController::class, 'meusPedidos'])->name('pedidos');
 });

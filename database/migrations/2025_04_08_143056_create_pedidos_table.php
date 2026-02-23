@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->enum('status', ['pendente', 'preparando', 'enviado', 'finalizado'])->default('pendente');
             $table->decimal('total', 8, 2);
+            $table->string('cep');
             $table->timestamps();
         });
     }

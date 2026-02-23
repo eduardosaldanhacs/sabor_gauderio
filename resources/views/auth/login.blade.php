@@ -3,21 +3,22 @@
     <div class="container my-5">
         <div class="row justify-content-center align-items-center">
             <div class="col-6">
-                <div class="card p-5 border border-secondary">
-                    <p class="display-6 text-center">LOGIN</p>
+                <div class="card p-5 bg-dark border border-white">
+                    <p class="display-6 text-center text-white">LOGIN</p>
                     <form action="{{ route('authenticate') }}" method="post">
                         @csrf
                         <div class="mb-3">
-                            <label for="username" class="form-label">Usuário</label>
-                            <input type="text" class="form-control" id="username" name="username" value="{{ old('username') }}">
+                            <label for="username" class="form-label text-white">Usuário</label>
+                            <input type="text" class="form-control" id="username" name="username" value="user1">
+                            {{-- <input type="text" class="form-control" id="username" name="username" value="{{ old('username')*/ }}"> --}}
                             @error('username')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="mb-3">
-                            <label for="password" class="form-label">Senha</label>
-                            <input type="password" class="form-control" id="password" name="password">
+                            <label for="password" class="form-label text-white">Senha</label>
+                            <input type="password" class="form-control" id="password" name="password" value="Aa123456">
                             @error('password')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -26,14 +27,14 @@
                         <div class="row mt-4">
                             <div class="col">
                                 <div class="mb-3">
-                                    <a href="{{ route('register') }}">Não tenho conta de usuário</a>
+                                    <a class="text-white" href="{{ route('register') }}">Não tenho conta de usuário</a>
                                 </div>
                                 <div>
-                                    <a href="{{ route('forgot_password') }}">Esqueci a minha senha</a>
+                                    <a class="text-white" href="{{ route('forgot_password') }}">Esqueci a minha senha</a>
                                 </div>
                             </div>
                             <div class="col text-end align-self-center">
-                                <button type="submit" class="btn btn-secondary px-5">ENTRAR</button>
+                                <button type="submit" class="btn btn-primary px-5">ENTRAR</button>
                             </div>
                         </div>
 

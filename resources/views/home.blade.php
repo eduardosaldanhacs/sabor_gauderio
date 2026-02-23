@@ -6,11 +6,19 @@
                 <p class="text-center display-6">Seja bem vindo a nossa pizzaria {{ Auth::user()->username }}</p>
             </div>
             <div class="col-12 text-center">
-                <button class="btn btn-outline-primary">Pedidos</button>
-                <form action="{{ route('profile') }}" method="GET">
-                    @csrf
-                    <button class="btn btn-outline-primary">Meu Cadastro</button>
-                </form>
+                <div class="row">
+                    <div class="col-6">
+                        <form action="{{ route('pedidos') }}" method="GET">
+                            <button class="btn btn-outline-primary">Pedidos</button>
+                        </form>
+                    </div>
+                    <div class="col-6">
+                        <form action="{{ route('profile') }}" method="GET">
+                            @csrf
+                            <button class="btn btn-outline-primary">Meu Cadastro</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
