@@ -8,12 +8,40 @@
             <div class="col-12">
                 <div class="row">
                     @foreach ($pedidos as $pedido)
-                        <div class="mb-5 col-4">
+                        <div class="col-12 card mb-4">
                             <div class="card-body text-center">
-                                <h5 class="card-title">Pedido #{{ $pedido->id }}</h5>
-                                <p class="card-text">Preço: R$ {{ number_format($pedido->total, 2, ',', '.') }}</p>
-                                <p class="card-text">Status: {{ $pedido->status }}</p>
-                                <p class="card-text">Endereço: {{ $pedido->cep }}</p>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <a href="{{ route('pedido_detalhes', ['id' => $pedido->id]) }}"
+                                            class="text-decoration-none text-dark">
+                                            <h5 class="card-title">Pedido #{{ $pedido->id }}</h5>
+                                        </a>
+                                        <p class="card-text m-1">Preço: R$
+                                            {{ number_format($pedido->total, 2, ',', '.') }}
+                                        </p>
+                                        <p class="card-text m-1">Status: {{ $pedido->status }}</p>
+                                        <p class="card-text m-1">Endereço: {{ $pedido->cep }}</p>
+                                    </div>
+                                    <div class="col-6">
+                                            <div class="col-6">
+                                                <form action="{{ route('cancelarPedido', ['id' => $pedido->id]) }}"
+                                                    method="POST" class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger w-100">Cancelar
+                                                        Pedido</button>
+                                                </form>
+                                            </div>
+                                            <div class="col-6 mt-2">
+                                                <form action="{{ route('pedido_detalhes', ['id' => $pedido->id]) }}"
+                                                    method="GET" class="d-inline">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-primary w-100">Visualizar
+                                                        Pedido</button>
+                                                </form>
+                                            </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     @endforeach

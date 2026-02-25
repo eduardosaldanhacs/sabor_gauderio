@@ -67,4 +67,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/finalizar_pedido', [MainController::class, 'finalizar_pedido'])->name('finalizar_pedido');
 
     Route::get('/pedidos', [MainController::class, 'meusPedidos'])->name('pedidos');
+    Route::get('/pedido/{id}', [MainController::class, 'pedidoDetalhes'])->name('pedido_detalhes');
+    Route::delete('/pedido/{id}/cancelar', [MainController::class, 'cancelarPedido'])->name('cancelarPedido');
 });

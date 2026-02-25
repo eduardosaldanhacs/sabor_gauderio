@@ -18,6 +18,7 @@ return new class extends Migration
             $table->decimal('total', 8, 2);
             $table->string('cep');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -7,7 +7,7 @@ use Illuminate\View\View;
 use App\Models\Pizza;
 use App\Models\Pedido;
 use App\Models\PedidoItem;
-
+use Illuminate\Support\Facades\DB;
 
 class MainController extends Controller
 {
@@ -61,38 +61,63 @@ class MainController extends Controller
 
     public function finalizar_pedido()
     {
-        // Aqui você pode implementar a lógica para finalizar o pedido,
         $carrinho = session()->get('carrinho', []);
         $cep = session()->get('cep');
 
-        Pedido::create([
-            'user_id' => auth()->id(),
-            'total' => collect($carrinho)->sum(function ($item) {
-                return $item['small_price'] * $item['quantidade'];
-            }),
-            'status' => 'pendente',
-            'cep' => $cep,
-        ]);
-        foreach ($carrinho as $item) {
-            PedidoItem::create([
-                'pedido_id' => Pedido::latest()->first()->id,
-                'pizza_id' => 1,
-                'tamanho' => 'M',
-                'quantidade' => $item['quantidade'],
-                'preco_unitario' => $item['small_price'],
-                'subtotal' => $item['small_price'] * $item['quantidade'],
-            ]);
-        }
-        // como salvar os dados no banco, enviar e-mail de confirmação, etc.
 
-        // Para este exemplo, vamos apenas limpar o carrinho e redirecionar para a home
+        DB::transaction(function () use ($carrinho, $cep) {
+            $pedido = Pedido::create([
+                'user_id' => auth()->id(),
+                'total' => collect($carrinho)->sum(function ($item) {
+                    return $item['small_price'] * $item['quantidade'];
+                }),
+                'status' => 'pendente',
+                'cep' => $cep,
+            ]);
+
+            foreach ($carrinho as $item) {
+                PedidoItem::create([
+                    'pedido_id' => $pedido->id,
+                    'pizza_id' => 1,
+                    'tamanho' => 'M',
+                    'quantidade' => $item['quantidade'],
+                    'preco_unitario' => $item['small_price'],
+                    'subtotal' => $item['small_price'] * $item['quantidade'],
+                ]);
+            }
+        });
+
         session()->forget('carrinho');
+        // dispatch('notification', type: 'success', title: 'Pedido finalizado com sucesso!');
         return redirect()->route('home')->with('success', 'Pedido finalizado com sucesso!');
+    }
+
+    public function cancelarPedido($id)
+    {
+        $pedido = Pedido::find($id);
+        if (!$pedido || $pedido->user_id !== auth()->id()) {
+            return redirect()->route('pedidos')->with('error', 'Pedido não encontrado ou acesso negado.');
+        }
+        $pedido->delete();
+
+        $pedidos = PedidoItem::where('pedido_id', $id)->get();
+        foreach ($pedidos as $item) {
+            $item->delete();
+        }
+
+        return redirect()->route('pedidos')->with('success', 'Pedido cancelado com sucesso!');
     }
 
     public function meusPedidos()
     {
         $pedidos = Pedido::where('user_id', auth()->id())->latest()->get();
         return view('pedidos', ['pedidos' => $pedidos]);
+    }
+
+    public function pedidoDetalhes($id)
+    {
+        $pedido = Pedido::where('id', $id)->where('user_id', auth()->id())->firstOrFail();
+        $itens = PedidoItem::where('pedido_id', $pedido->id)->get();
+        return view('pedido-detalhes', ['pedido' => $pedido, 'itens' => $itens]);
     }
 }
