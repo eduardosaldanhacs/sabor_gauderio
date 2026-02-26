@@ -27,6 +27,15 @@ class Carrinho extends Component
         $this->dispatch('notification', type: 'success', title: 'Carrinho limpo!');
     }
 
+    public function removerDoCarrinho($id)
+    {
+        $carrinho = session()->get('carrinho', []);
+        unset($carrinho[$id]);
+        session()->put('carrinho', $carrinho);
+        $this->carrinho = $carrinho;
+        $this->dispatch('notification', type: 'success', title: 'Item removido do carrinho!');
+    }
+
     public function finalizarCompra()
     {
         if (!$this->cep) {

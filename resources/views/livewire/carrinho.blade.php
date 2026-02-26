@@ -14,10 +14,19 @@
                             style="height: 80px" alt="{{ $item['name'] }}">
                     </div>
                     <div class="col-7">
-                        <p class="m-0 text-capitalize">Pizza: {{ $item['name'] }}</p>
-                        <p class="m-0 text-capitalize">Preço: R$ {{ number_format($item['small_price'], 2, ',', '.') }}
-                        </p>
-                        <p class="mb-2 text-capitalize">Quantidade: {{ $item['quantidade'] }}</p>
+                        <div class="row">
+                            <div class="col-8">
+                                <p class="m-0 text-capitalize">Pizza: {{ $item['name'] }}</p>
+                                <p class="m-0 text-capitalize">Preço: R$ {{ number_format($item['small_price'], 2, ',', '.') }}
+                                </p>
+                                <p class="mb-2 text-capitalize">Quantidade: {{ $item['quantidade'] }}</p>
+                            </div>
+                            <div class="col-2">
+                                <a wire:click="removerDoCarrinho({{ $item['id'] }})" class="text-danger"><i
+                                        class="fas fa-trash"></i></a>
+                                <a wire:click="incrementar"></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             @empty
@@ -34,7 +43,7 @@
                     </div>
                     <p class="mt-2 fw-bold">Total: R$ {{ number_format($this->total, 2, ',', '.') }}</p>
                     <a wire:click="limparCarrinho" class="btn btn-outline-danger">Limpar Carrinho</a>
-                    <input type="submit" class="btn btn-outline-success mt-2" value="Finalizar Compra">                   
+                    <input type="submit" class="btn btn-outline-success mt-2" value="Finalizar Compra">
                 </form>
             @endif
         </div>
