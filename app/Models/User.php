@@ -12,9 +12,22 @@ class User extends Authenticable
     use HasFactory;
     use SoftDeletes;
 
+    protected $fillable = [
+        'username',
+        'email',
+        'password',
+        'active',
+    ];
+
     // atributes that are hidden for serialization
     protected $hidden = [
         'password',
         'token'
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'active' => 'boolean',
+        'is_admin' => 'boolean',
     ];
 }

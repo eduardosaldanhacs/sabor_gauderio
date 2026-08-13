@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row align-items-center justify-content-between" id="contato">
             <div class="col-md-4 text-center">
-                <img src="{{ asset('assets/images/sabor_gauderio.png') }}" alt="" class="img-fluid"
+                <img src="{{ asset('assets/images/sabor-gauderio-logo-v2.png') }}" alt="Sabor Gaudério" class="img-fluid"
                     style="width: 200px;">
             </div>
             <div class="col-md-4 text-start">

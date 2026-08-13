@@ -1,62 +1,40 @@
-@props(['pizzas'])
-<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-    <div class="container-fluid">
-        <div class="col-3"><a class="navbar-brand" href="{{ route('index') }}"><img class="img-fluid"
-                    src="{{ asset('assets/images/sabor_gauderio.png') }}" alt="" style="height: 80px"></a></div>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
-            aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="col-9 collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav me-auto">
-                <div class="dropdown">
-                    <li class="nav-item" id="cardapio-dropdown">
-                        <a class="text-white nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-pizza-slice me-1"></i>
-                            <span onclick="window.location.href='{{ route('cardapio') }}'" id="cardapio-menu">Cardápio</span>
-                        </a>
-                        <ul class="dropdown-menu" id="menu-cardapio">
-                            @foreach ($pizzas as $pizza)
-                                <li>
-                                    <a class="dropdown-item text-white" type="button" href="{{ route('detalhe', ['id' => $pizza->id]) }}">
-                                        {{ $pizza->name }}
-                                    </a>
-                                </li>
+@props(['pizzas' => collect()])
+<header class="site-header">
+    <div class="site-header-accent" aria-hidden="true"></div>
+    <nav class="navbar navbar-expand-lg site-navbar" aria-label="Navegação principal">
+        <div class="container-fluid site-navbar-inner">
+            <a class="site-brand" href="{{ route('index') }}" aria-label="Sabor Gaudério — início">
+                <img src="{{ asset('assets/images/sabor-gauderio-logo-v2.png') }}" alt="Sabor Gaudério">
+            </a>
+            <button class="navbar-toggler site-menu-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#siteNavigation" aria-controls="siteNavigation" aria-expanded="false" aria-label="Abrir menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="siteNavigation">
+                <ul class="navbar-nav site-main-nav mx-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {{ request()->routeIs('cardapio', 'detalhe') ? 'active' : '' }}" href="{{ route('cardapio') }}" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-pizza-slice"></i> Cardápio</a>
+                        <ul class="dropdown-menu site-menu-dropdown">
+                            <li><a class="dropdown-item site-menu-all" href="{{ route('cardapio') }}">Ver cardápio completo <i class="fa-solid fa-arrow-right"></i></a></li>
+                            @foreach ($pizzas->take(6) as $pizza)
+                                <li><a class="dropdown-item" href="{{ route('detalhe', ['id' => $pizza->id]) }}">{{ $pizza->name }}</a></li>
                             @endforeach
                         </ul>
-                        {{-- <a class="nav-link text-white" href="{{ route('cardapio') }}"><i
-                                class="fas fa-pizza-slice me-1"></i>Cardápio</a> --}}
                     </li>
+                    <li class="nav-item"><a class="nav-link {{ request()->routeIs('sobre-nos') ? 'active' : '' }}" href="{{ route('sobre-nos') }}"><i class="fa-solid fa-circle-info"></i> Sobre nós</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contato"><i class="fa-solid fa-phone"></i> Contato</a></li>
+                </ul>
+                <div class="site-header-actions">
+                    @livewire('carrinho')
+                    @guest
+                        <a href="{{ route('login') }}" class="site-login-button"><i class="fa-solid fa-arrow-right-to-bracket"></i> Entrar</a>
+                    @endguest
+                    @auth
+                        <a href="{{ route('home') }}" class="site-account-button"><i class="fa-solid fa-user"></i> Minha conta</a>
+                        <a href="{{ route('logout') }}" class="site-logout-link" aria-label="Sair"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+                    @endauth
                 </div>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ route('sobre-nos') }}"><i
-                            class="fas fa-info-circle me-1"></i>Sobre
-                        Nós</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#contato"><i class="fas fa-phone-alt me-1"></i>Contato</a>
-                </li>
-            </ul>
-            <div class="d-flex">
-
-                {{-- <a href="{{ route('login') }}" class="btn btn-outline-light me-2">
-                    <i class="fas fa-shopping-cart me-1"></i> Carrinho
-                </a> --}}
-                @livewire('carrinho')
-                @guest
-                    <a href="{{ route('login') }}" class="btn btn-warning">
-                        <i class="fas fa-sign-in-alt me-1"></i> Entrar
-                    </a>
-                @endguest
-                @auth
-                    <a href="{{ route('home') }}" class="btn btn-info me-1">
-                        <i class="fas fa-sign-out-alt me-1"></i> Área do Cliente
-                    </a>
-                    <a href="{{ route('logout') }}" class="btn btn-danger">
-                        <i class="fas fa-sign-out-alt me-1"></i> Sair
-                    </a>
-                @endauth
             </div>
         </div>
-    </div>
-</nav>
+    </nav>
+    <div class="site-header-rule" aria-hidden="true"></div>
+</header>

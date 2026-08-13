@@ -14,6 +14,20 @@ class Pedido extends Model
         'total',
         'status',
         'cep',
+        'channel',
+        'payment_method',
+        'payment_status',
+        'delivery_fee',
+        'notes',
     ];
-    
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function items()
+    {
+        return $this->hasMany(PedidoItem::class);
+    }
 }

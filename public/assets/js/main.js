@@ -1,14 +1,8 @@
-// main.js
-
+// Compatibility for legacy menu markup still used by older views.
 const conteudo = document.getElementById("cardapio-menu");
-
-conteudo.addEventListener("mouseenter", function () {
-    showMenu();
-});
-
 const contentMenu = document.getElementById("cardapio-dropdown");
-contentMenu.addEventListener("mouseleave", function () {
-    // aqui você chama sua função
-    showMenu();
-});
 
+if (conteudo && contentMenu && typeof showMenu === "function") {
+    conteudo.addEventListener("mouseenter", showMenu);
+    contentMenu.addEventListener("mouseleave", showMenu);
+}

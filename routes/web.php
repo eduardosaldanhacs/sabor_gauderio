@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 
@@ -67,4 +68,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/finalizar_pedido', [MainController::class, 'finalizar_pedido'])->name('finalizar_pedido');
 
     Route::get('/pedidos', [MainController::class, 'meusPedidos'])->name('pedidos');
+
+    Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
+        Route::get('/', [AdminController::class, 'index'])->name('dashboard');
+        Route::get('/pedidos', [AdminController::class, 'orders'])->name('orders');
+        Route::patch('/pedidos/{pedido}/status', [AdminController::class, 'updateOrderStatus'])->name('orders.status');
+        Route::get('/cardapio', [AdminController::class, 'menu'])->name('menu');
+        Route::post('/cardapio', [AdminController::class, 'storePizza'])->name('menu.store');
+        Route::patch('/cardapio/{pizza}', [AdminController::class, 'updatePizza'])->name('menu.update');
+        Route::get('/{section}', [AdminController::class, 'section'])
+            ->whereIn('section', ['estoque', 'clientes', 'entregas', 'financeiro', 'relatorios', 'configuracoes'])
+            ->name('section');
+    });
 });

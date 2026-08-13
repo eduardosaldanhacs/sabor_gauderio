@@ -14,4 +14,14 @@ class Pizza extends Model
     // public $size = null;
 
     use HasFactory;
+
+    protected $fillable = [
+        'name', 'category', 'flavor', 'history', 'image', 'available', 'featured',
+        'prep_time', 'small_price', 'medium_price', 'large_price',
+    ];
+
+    protected $casts = [
+        'available' => 'boolean',
+        'featured' => 'boolean',
+    ];
 }

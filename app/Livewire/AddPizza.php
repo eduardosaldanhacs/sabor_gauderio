@@ -24,6 +24,7 @@ class AddPizza extends Component
             $carrinho[$pizza->id]['quantidade']++;
         } else {
             $carrinho[$pizza->id] = [
+                'id' => $pizza->id,
                 'name' => $pizza->name,
                 'small_price' => $pizza->small_price,
                 'quantidade' => 1,
@@ -43,7 +44,6 @@ class AddPizza extends Component
         return view('livewire.add-pizza');
     }
 }
-
 
 
 

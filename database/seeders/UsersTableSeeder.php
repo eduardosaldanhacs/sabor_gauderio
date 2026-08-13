@@ -21,7 +21,8 @@ class UsersTableSeeder extends Seeder
                 'email' => "user$index@gmail.com",
                 'password' => bcrypt('Aa123456'),
                 'email_verified_at' => Carbon::now(),
-                'active' => true
+                'active' => true,
+                'is_admin' => $index === 1,
             ]);
         }
     }
