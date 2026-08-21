@@ -13,11 +13,18 @@ class User extends Authenticable
     use SoftDeletes;
 
     protected $fillable = [
+        'name',
         'username',
         'email',
         'password',
         'active',
+        'is_admin',
     ];
+
+    public function getDisplayNameAttribute(): string
+    {
+        return $this->name ?: $this->username;
+    }
 
     // atributes that are hidden for serialization
     protected $hidden = [

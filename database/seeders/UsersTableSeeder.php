@@ -1,28 +1,24 @@
 <?php
-
 namespace Database\Seeders;
 
 use App\Models\User;
-use Carbon\Carbon;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UsersTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        // add 3 users to the database
-        for($index = 1; $index <=3; $index++){
-            User::create([
-                'username' => "user$index",
-                'email' => "user$index@gmail.com",
-                'password' => bcrypt('Aa123456'),
-                'email_verified_at' => Carbon::now(),
-                'active' => true,
-                'is_admin' => $index === 1,
+        $users = [
+            ['name' => 'Bento Fagundes', 'username' => 'bento', 'email' => 'bento@saborgauderio.test', 'is_admin' => true],
+            ['name' => 'Clara Silveira', 'username' => 'clara', 'email' => 'clara@saborgauderio.test', 'is_admin' => false],
+            ['name' => 'Miguel Dornelles', 'username' => 'miguel', 'email' => 'miguel@saborgauderio.test', 'is_admin' => false],
+            ['name' => 'Laura Martins', 'username' => 'laura', 'email' => 'laura@saborgauderio.test', 'is_admin' => false],
+        ];
+        foreach ($users as $user) {
+            User::withTrashed()->updateOrCreate(['email' => $user['email']], $user + [
+                'password' => Hash::make('Aa123456'), 'email_verified_at' => now(),
+                'active' => true, 'deleted_at' => null,
             ]);
         }
     }

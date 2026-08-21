@@ -92,6 +92,7 @@ body { color: var(--ink); background: var(--cream); font-family: "Lato", system-
 .login-submit:hover { background:#8d351f; border-color:#8d351f; transform:translateY(-1px); box-shadow:0 8px 18px rgba(104,45,28,.2); }
 .login-submit:focus-visible,.login-password-toggle:focus-visible,.login-label-row a:focus-visible,.login-register a:focus-visible { outline:3px solid rgba(217,154,43,.45); outline-offset:3px; }
 .login-register { margin:1.45rem 0 0; padding-top:1.35rem; color:var(--muted); border-top:1px solid var(--line); text-align:center; font-size:.83rem; }
+.login-demo-access { margin:.8rem 0 0; color:#765d48; text-align:center; font-size:.72rem; }.login-demo-access i{margin-right:.3rem;color:var(--gold)}
 .login-register a { color:var(--rust); font-weight:900; text-decoration:none; }
 .login-safe { margin:1.1rem 0 0; color:#8c7c69; text-align:center; font-size:.7rem; }
 .login-safe i { margin-right:.3rem; color:var(--sage); }
@@ -155,7 +156,12 @@ body { color: var(--ink); background: var(--cream); font-family: "Lato", system-
 .customer-action-grid span { flex:1; } .customer-action-grid strong,.customer-action-grid small { display:block; } .customer-action-grid small { color:var(--muted); margin-top:.2rem; }
 
 /* Administrative shell */
-.admin-body { min-height:100vh; background:#f4efe7; }
+.admin-body { min-height:100vh; background:#f4efe7; font-family:"Lato",system-ui,sans-serif; font-weight:400; letter-spacing:.005em; }
+.admin-body button,.admin-body input,.admin-body select,.admin-body textarea,.admin-body table { font-family:"Lato",system-ui,sans-serif; }
+.admin-page-heading h1,.panel-heading h2,.quick-actions h2,.menu-card-title h2,.module-intro h2 { font-family:"Bodoni Moda",Georgia,serif!important; font-weight:700!important; text-transform:none; letter-spacing:-.02em; }
+.admin-brand strong { font-family:"Bodoni Moda",Georgia,serif!important; font-weight:700; font-size:1.05rem!important; letter-spacing:-.01em; }
+.metric-card>strong,.kitchen-row>b,.module-cards strong { font-family:"Bodoni Moda",Georgia,serif!important; font-weight:700!important; letter-spacing:-.02em; }
+.admin-nav,.admin-topbar,.admin-table,.admin-nav-label,.admin-page-heading p,.panel-heading p,.metric-card>span,.metric-card>small { font-family:"Lato",system-ui,sans-serif; }
 .admin-sidebar { position:fixed; inset:0 auto 0 0; z-index:1030; width:270px; display:flex; flex-direction:column; color:#f9f3e8; background:linear-gradient(180deg,#2b1b14,#42291c 68%,#2b1b14); border-right:1px solid rgba(255,255,255,.08); }
 .admin-sidebar:before { content:""; position:absolute; inset:0; opacity:.06; pointer-events:none; background-image:url('../images/background-1-low.jpg'); background-size:cover; mix-blend-mode:luminosity; }
 .admin-brand,.admin-nav,.admin-user { position:relative; }

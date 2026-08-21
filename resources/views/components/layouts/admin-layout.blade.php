@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600;6..96,700&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body class="admin-body">
     <aside class="admin-sidebar" id="adminSidebar">
@@ -31,8 +34,8 @@
             <a href="{{ route('index') }}"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ver loja</a>
         </nav>
         <div class="admin-user">
-            <span class="admin-avatar">{{ strtoupper(substr(Auth::user()->username, 0, 1)) }}</span>
-            <span><strong>{{ Auth::user()->username }}</strong><small>Administrador</small></span>
+            <span class="admin-avatar">{{ strtoupper(substr(Auth::user()->display_name, 0, 1)) }}</span>
+            <span><strong>{{ Auth::user()->display_name }}</strong><small>Administrador</small></span>
             <a href="{{ route('logout') }}" aria-label="Sair"><i class="fa-solid fa-right-from-bracket"></i></a>
         </div>
     </aside>

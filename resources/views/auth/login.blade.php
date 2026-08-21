@@ -50,7 +50,7 @@
                             <label for="username">Usuário</label>
                             <div class="login-input-wrap">
                                 <i class="fa-regular fa-user" aria-hidden="true"></i>
-                                <input type="text" id="username" name="username" value="{{ old('username') }}"
+                                <input type="text" id="username" name="username" value="{{ old('username', 'bento') }}"
                                     placeholder="Digite seu usuário" autocomplete="username" required autofocus
                                     @error('username') aria-invalid="true" aria-describedby="username-error" @enderror>
                             </div>
@@ -66,7 +66,7 @@
                             </div>
                             <div class="login-input-wrap">
                                 <i class="fa-solid fa-lock" aria-hidden="true"></i>
-                                <input type="password" id="password" name="password" placeholder="Digite sua senha"
+                                <input type="password" id="password" name="password" value="Aa123456" placeholder="Digite sua senha"
                                     autocomplete="current-password" required
                                     @error('password') aria-invalid="true" aria-describedby="password-error" @enderror>
                                 <button class="login-password-toggle" type="button" aria-label="Mostrar senha" aria-pressed="false">
@@ -83,6 +83,7 @@
                             <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                         </button>
                     </form>
+                    <p class="login-demo-access"><i class="fa-solid fa-key" aria-hidden="true"></i> Acesso demonstrativo já preenchido</p>
 
                     <p class="login-register">Ainda não tem uma conta? <a href="{{ route('register') }}">Cadastre-se</a></p>
                     <p class="login-safe"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Seus dados são protegidos.</p>

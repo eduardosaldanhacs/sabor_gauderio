@@ -3,7 +3,7 @@
     <main class="customer-area">
         <div class="container py-5">
             <div class="customer-welcome">
-                <div><p class="eyebrow">Área do cliente</p><h1>Buenas, {{ Auth::user()->username }}!</h1><p>Acompanhe seus pedidos ou escolha o próximo sabor da rodada.</p></div>
+                <div><p class="eyebrow">Área do cliente</p><h1>Buenas, {{ Auth::user()->display_name }}!</h1><p>Acompanhe seus pedidos ou escolha o próximo sabor da rodada.</p></div>
                 <a class="btn-rustic" href="{{ route('cardapio') }}"><i class="fa-solid fa-pizza-slice"></i> Pedir uma pizza</a>
             </div>
             @if (session('success'))<div class="alert admin-alert mt-4">{{ session('success') }}</div>@endif

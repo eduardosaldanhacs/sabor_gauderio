@@ -1,6 +1,6 @@
 <x-layouts.admin-layout pageTitle="Visão geral">
     <div class="admin-page-heading">
-        <div><p class="eyebrow">Resumo de hoje</p><h1>Buenas, {{ Auth::user()->username }}!</h1><p>Acompanhe o movimento da casa e o que precisa da sua atenção.</p></div>
+        <div><p class="eyebrow">Resumo de hoje</p><h1>Buenas, {{ Auth::user()->display_name }}!</h1><p>Acompanhe o movimento da casa e o que precisa da sua atenção.</p></div>
         <a href="{{ route('admin.orders') }}" class="btn-rustic"><i class="fa-solid fa-plus"></i> Novo pedido</a>
     </div>
 
@@ -19,7 +19,7 @@
                     <thead><tr><th>Pedido</th><th>Cliente</th><th>Horário</th><th>Total</th><th>Status</th></tr></thead>
                     <tbody>
                     @forelse ($orders as $order)
-                        <tr><td><strong>#{{ str_pad($order->id, 4, '0', STR_PAD_LEFT) }}</strong></td><td>{{ $order->user?->username ?? 'Balcão' }}</td><td>{{ $order->created_at->format('H:i') }}</td><td>R$ {{ number_format($order->total, 2, ',', '.') }}</td><td><span class="status-pill status-{{ $order->status }}">{{ ucfirst($order->status) }}</span></td></tr>
+                        <tr><td><strong>#{{ str_pad($order->id, 4, '0', STR_PAD_LEFT) }}</strong></td><td>{{ $order->user?->display_name ?? 'Balcão' }}</td><td>{{ $order->created_at->format('H:i') }}</td><td>R$ {{ number_format($order->total, 2, ',', '.') }}</td><td><span class="status-pill status-{{ $order->status }}">{{ ucfirst($order->status) }}</span></td></tr>
                     @empty
                         <tr><td colspan="5" class="empty-cell">Nenhum pedido registrado ainda.</td></tr>
                     @endforelse
